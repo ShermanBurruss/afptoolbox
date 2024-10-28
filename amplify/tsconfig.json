@@ -8,6 +8,8 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
+    "jsx": "react-jsx",  // Enables React JSX syntax
+    "lib": ["DOM", "ESNext"],  // Adds DOM and modern JS support
     "paths": {
       "$amplify/*": [
         "../.amplify/generated/*"
