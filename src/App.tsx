@@ -21,6 +21,24 @@ function App() {
       isDone: false,
     });
   }
+
+  function toggleTodo(id: string) {
+    // Fetch the current todo item
+    client.models.Todo.get({ id }).then((result) => {
+      const todo = result.data;
+      if (todo) {
+        // Toggle the isDone field
+        const updatedTodo = { id, isDone: !todo.isDone };
+        // Update the todo item with the toggled isDone value
+        client.models.Todo.update(updatedTodo);
+      } else {
+        console.error("Todo not found");
+      }
+    }).catch(error => {
+      console.error("Error toggling todo:", error);
+    });
+  }
+  
   
   function deleteTodo(id: string) {
     client.models.Todo.delete({ id })
@@ -32,7 +50,9 @@ function App() {
       <button onClick={createTodo}>+ new</button>
       <ul>
         {todos.map((todo) => (
-          <li onClick={() => deleteTodo(todo.id)} key={todo.id}>{todo.content} {todo.isDone}</li>
+          <li onClick={() => toggleTodo(todo.id)} key={todo.id}>
+            {todo.content} {todo.isDone ? "Done" : "Not Done"}
+          </li>
         ))}
       </ul>
       <div>
