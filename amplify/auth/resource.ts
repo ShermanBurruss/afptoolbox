@@ -17,16 +17,21 @@ export const auth = defineAuth({
       mutable: true,
       required: true,
     },
-    "custom:scac":{},
-    companyName:{
-      mutable: true,
-      required: false,
-      description: "Name of the user's company.",
+    "custom:scac":{
+      dataType: 'String',
+      mutable: false,
+    },
+    "custom:companyName":{
+      dataType: 'String',
+      mutable: false,
     },
     phoneNumber:{
       mutable: true,
       required: true,
     },
-    "custom:isActive": {},
+    "custom:isActive": {
+      dataType: 'Boolean',
+      mutable: false,
+    },
   },
 });
