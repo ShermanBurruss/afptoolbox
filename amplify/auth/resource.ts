@@ -30,7 +30,7 @@ export const auth = defineAuth({
       required: true,
     },
     "custom:isActive": {
-      dataType: 'Boolean',
+      dataType: 'String',
       mutable: false,
     },
   },
