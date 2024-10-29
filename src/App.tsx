@@ -62,7 +62,6 @@ function App() {
   return (
     <main>
       <Header />
-      <h1>HI!</h1>
       <h1>{user?.attributes?.companyName} - {user?.attributes?.scac}</h1>
       <h3>{user?.attributes?.firstName} {user?.attributes?.lastName}</h3>
       <button onClick={createTodo}>+ new</button>
