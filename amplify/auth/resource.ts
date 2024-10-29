@@ -9,12 +9,12 @@ export const auth = defineAuth({
     email: true,
   },
   userAttributes: {
-    firstName:{
+    given_name:{
       mutable: true,
       required: true,
       description: "The user's first name.",
     },
-    lastName:{
+    family_name:{
       mutable: true,
       required: true,
       description: "The user's last name.",
@@ -29,15 +29,9 @@ export const auth = defineAuth({
       required: false,
       description: "Name of the user's company.",
     },
-    phoneNumber: {
+    phone_number:{
       mutable: true,
       required: true,
-      validations: [
-        {
-          type: "regex",
-          value: /^\+?[1-9]\d{1,14}$/, // E.164 phone number format
-        },
-      ],
     },
     isActive: {
       mutable: false,
