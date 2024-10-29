@@ -17,11 +17,7 @@ export const auth = defineAuth({
       mutable: true,
       required: true,
     },
-    scac:{
-      mutable: false,
-      required: true,
-      description: "The Amazon provided designation code for the user's company.",
-    },
+    "custom:scac":{},
     companyName:{
       mutable: true,
       required: false,
@@ -31,9 +27,6 @@ export const auth = defineAuth({
       mutable: true,
       required: true,
     },
-    isActive: {
-      mutable: false,
-      required: true,
-    },
+    "custom:isActive": {},
   },
 });
