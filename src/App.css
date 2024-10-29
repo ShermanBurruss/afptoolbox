@@ -1,7 +1,7 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
+  margin: 0;
+  padding: 0;
   text-align: center;
 }
 
@@ -39,4 +39,38 @@
 
 .read-the-docs {
   color: #888;
+}
+
+
+  /* Navbar styles */
+  .navbar {
+    display: flex;
+    background-color: #567fa9;
+    border-bottom: 5px ridge #483558;
+    align-items: flex-end;
+  }
+
+  .navdiv {
+    display: flex;
+    justify-content: space-evenly; /* Equal spacing between items and at the edges */
+    width: 20%; 
+  }
+
+.navdivcenter{
+  width:60%;
+  text-align: center;
+}
+
+.navdivcenter h3{
+    margin:0;
+}
+
+.nav-logo {
+  max-width: 150px;
+  max-height: 150px;
+  margin-left: 20px;
+}
+
+.nav-link {
+  color: white !important;
 }
