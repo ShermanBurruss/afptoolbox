@@ -1,36 +1,32 @@
 import { defineAuth } from '@aws-amplify/backend';
 
-/**
- * Define and configure your auth resource
- * @see https://docs.amplify.aws/gen2/build-a-backend/auth
- */
 export const auth = defineAuth({
   loginWith: {
     email: true,
   },
   userAttributes: {
-    givenName:{
+    givenName: {
       mutable: true,
       required: true,
     },
-    familyName:{
+    familyName: {
       mutable: true,
       required: true,
     },
-    "custom:scac":{
+    "custom:scac": {
       dataType: 'String',
       mutable: false,
     },
-    "custom:companyName":{
+    "custom:companyName": {
       dataType: 'String',
       mutable: false,
     },
-    phoneNumber:{
+    phoneNumber: {
       mutable: true,
       required: true,
     },
     "custom:isActive": {
-      dataType: 'String',
+      dataType: 'Boolean',
       mutable: false,
     },
   },

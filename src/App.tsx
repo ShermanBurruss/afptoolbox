@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { useAuthenticator } from '@aws-amplify/ui-react';
 import { generateClient } from "aws-amplify/data";
-import Header from "./components/Header.jsx";
+import Header from "./components/Header.tsx";
 import "./App.css";
 
 const client = generateClient<Schema>();
@@ -21,6 +21,7 @@ function App() {
     };
   }, []);
 
+  console.log("User",user);
   const createTodo = async () => {
     const content = window.prompt("Todo content?");
     if (content) {
@@ -62,8 +63,8 @@ function App() {
   return (
     <main>
       <Header />
-      <h1>{user?.attributes?.companyName} - {user?.attributes?.scac}</h1>
-      <h3>{user?.attributes?.firstName} {user?.attributes?.lastName}</h3>
+      <h1>{user?.userAttributes?.companyName} - {user?.userAttributes?.scac}</h1>
+      <h3>{user?.userAttributes?.firstName} {user?.userAttributes?.lastName}</h3>
       <button onClick={createTodo}>+ new</button>
       <ul>
   {todos.map((todo) => (
