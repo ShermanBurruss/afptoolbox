@@ -9,15 +9,13 @@ export const auth = defineAuth({
     email: true,
   },
   userAttributes: {
-    given_name:{
+    givenName:{
       mutable: true,
       required: true,
-      description: "The user's first name.",
     },
-    family_name:{
+    familyName:{
       mutable: true,
       required: true,
-      description: "The user's last name.",
     },
     scac:{
       mutable: false,
@@ -29,7 +27,7 @@ export const auth = defineAuth({
       required: false,
       description: "Name of the user's company.",
     },
-    phone_number:{
+    phoneNumber:{
       mutable: true,
       required: true,
     },
