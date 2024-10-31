@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { Authenticator, useAuthenticator } from '@aws-amplify/ui-react';
+import { Auth } from '@aws-amplify/auth';
 import { generateClient } from "aws-amplify/data";
 import Header from "./components/Header.tsx";
 import CustomSignUpForm from './components/CustomSignUpForm';
@@ -10,10 +11,22 @@ const client = generateClient<Schema>();
 
 function AppContent() {
   const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  const [userAttributes, setUserAttributes] = useState<any>(null);
   const { user, signOut } = useAuthenticator();
-  console.log("User Attributes:", user);
 
   useEffect(() => {
+    // Fetch additional user attributes
+    const fetchUserAttributes = async () => {
+      try {
+        const authenticatedUser = await Auth.currentAuthenticatedUser();
+        setUserAttributes(authenticatedUser.attributes);
+      } catch (error) {
+        console.error("Error fetching user attributes:", error);
+      }
+    };
+
+    fetchUserAttributes();
+
     const subscription = client.models.Todo.observeQuery().subscribe({
       next: (data) => setTodos([...data.items]),
     });
@@ -30,7 +43,7 @@ function AppContent() {
         isDone: false,
       });
     }
-  }
+  };
 
   function toggleTodo(id: string) {
     client.models.Todo.get({ id }).then((result) => {
@@ -59,8 +72,8 @@ function AppContent() {
   return (
     <main>
       <Header />
-      <h1>{user?.attributes?.["custom:companyName"]} - {user?.attributes?.["custom:scac"]}</h1>
-      <h3>{user?.attributes?.given_name} {user?.attributes?.family_name}</h3>
+      <h1>{userAttributes?.["custom:companyName"]} - {userAttributes?.["custom:scac"]}</h1>
+      <h3>{userAttributes?.given_name} {userAttributes?.family_name}</h3>
       <button onClick={createTodo}>+ new</button>
       <ul>
         {todos.map((todo) => (
